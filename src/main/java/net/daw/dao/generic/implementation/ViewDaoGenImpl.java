@@ -74,6 +74,7 @@ public class ViewDaoGenImpl<BEAN_CLASS> extends MetaDaoGenImpl<BEAN_CLASS> imple
 
     @Override
     public int getCount(ArrayList<FilterBeanHelper> alFilter) throws Exception {
+        
         strSqlSelectDataOrigin += SqlBuilder.buildSqlWhere(alFilter);
         int pages = 0;
         try {
