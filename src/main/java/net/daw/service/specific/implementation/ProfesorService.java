@@ -30,10 +30,13 @@ package net.daw.service.specific.implementation;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import net.daw.bean.specific.implementation.ProfesorBean;
 import net.daw.connection.implementation.BoneConnectionPoolImpl;
 import net.daw.dao.specific.implementation.ProfesorDao;
+import net.daw.helper.statics.FilterBeanHelper;
 import net.daw.helper.statics.ParameterCook;
 import net.daw.service.generic.implementation.TableServiceGenImpl;
 
@@ -54,25 +57,62 @@ public class ProfesorService extends TableServiceGenImpl {
         Connection oConnection = null;
         oConnection = new BoneConnectionPoolImpl().newConnection();
 
-//lo que hay por debajo hay que crearlo        
         ProfesorDao oProfesorDao = new ProfesorDao(oConnection);
         ProfesorBean oProfesorBean = new ProfesorBean();
         oProfesorBean.setId(id);
         oProfesorBean = oProfesorDao.get(oProfesorBean, 1);
 
-//convertimos pojo en json
         Gson oGson = new GsonBuilder().setDateFormat("dd/MM/yyyy").create();
         return oGson.toJson(oProfesorBean);
 
     }
-    
+
     @Override
-    public String getcount() throws Exception{
-        
-        return null;
+    public String getall() throws Exception {
+        Connection oConnection = new BoneConnectionPoolImpl().newConnection();
+        ProfesorDao oProfesorDao = new ProfesorDao(oConnection);
+        ArrayList<ProfesorBean> alProfesores = new ArrayList<>();
+        alProfesores = oProfesorDao.getAll(null, null);
+        Gson oGson = new GsonBuilder().setDateFormat("dd/MM/yyyy").create();
+        return oGson.toJson(alProfesores);
+
     }
-    
-    
+
+    @Override
+    public String getcount() throws Exception {
+        Connection oConnection = new BoneConnectionPoolImpl().newConnection();
+        ProfesorDao oProfesorDao = new ProfesorDao(oConnection);
+
+        int count = oProfesorDao.getCount(null);
+        Gson oGson = new GsonBuilder().setDateFormat("dd/MM/yyyy").create();
+
+        return "{\"status\":200,\"message\":" + oGson.toJson(count) + "}";
+
+    }
+
+    @Override
+    public String getpage() throws Exception {
+
+        // Creamos las conexion
+        Connection oConnection = new BoneConnectionPoolImpl().newConnection();
+        ProfesorDao oProfesorDao = new ProfesorDao(oConnection);
+
+        int page = ParameterCook.preparePage(oRequest);
+        int rpp = ParameterCook.prepareRpp(oRequest);
+
+        ArrayList<FilterBeanHelper> alFilterBeanHelper = ParameterCook.prepareFilter(oRequest);
+
+        HashMap<String, String> hmOrder = ParameterCook.prepareOrder(oRequest);
+
+        Gson oGson = new GsonBuilder().setDateFormat("dd/MM/yyyy").create();
+
+        return "{\"status\":200,\"message\":" + oGson.toJson(oProfesorDao.getPage(rpp, page, alFilterBeanHelper, hmOrder)) + "}";
+    }
+
+//    @Override
+//    public String getpages() throws Exception {
+//        return null;
+//
+//    }
+
 }
-        
-        
