@@ -26,29 +26,20 @@
  * 
  */
 package net.daw.bean.specific.implementation;
-
+ 
 import com.google.gson.annotations.Expose;
 import net.daw.bean.generic.implementation.BeanGenImpl;
 import net.daw.bean.publicinterface.BeanInterface;
 import net.daw.helper.annotations.MethodMetaInformation;
 import net.daw.helper.annotations.TableSourceMetaInformation;
 import net.daw.helper.statics.MetaEnum;
-
-/**
- *
- * @author a044533450e
- */
+ 
 @TableSourceMetaInformation(
         TableName = "profesor",
-        Description = "Profesores"
+        Description = "Profesores del sistema"
 )
-
 public class ProfesorBean extends BeanGenImpl implements BeanInterface {
-
-   
-
-  
-
+ 
     @Expose
     @MethodMetaInformation(
             IsId = true,
@@ -58,54 +49,49 @@ public class ProfesorBean extends BeanGenImpl implements BeanInterface {
             Type = MetaEnum.FieldType.Integer,
             DefaultValue = "0"
     )
-    private Integer id;
-    
+    private Integer id = 0; //siempre inicializar los id a 0
+ 
     @Expose
     @MethodMetaInformation(            
             UltraShortName = "Nom.",
             ShortName = "Nombre",
             Description = "Nombre del profesor",
-            Type = MetaEnum.FieldType.String,
-            MinLength = 0,
-            MaxLength = 255,
-            DefaultValue = "")
+            Type = MetaEnum.FieldType.String
+        
+    )
     private String nombre;
- 
     @Expose
     @MethodMetaInformation(            
             UltraShortName = "Est.",
             ShortName = "Estado",
             Description = "Estado del profesor",
-            Type = MetaEnum.FieldType.String,
-            MinLength = 0,
-            MaxLength = 255,
-            DefaultValue = "")
-    private String estado;    
-
- public Integer getId() {
+            Type = MetaEnum.FieldType.String
+          
+    )
+    private String estado;
+ 
+    public Integer getId() {
         return id;
     }
-
+ 
     public void setId(Integer id) {
         this.id = id;
     }
-
+ 
     public String getNombre() {
         return nombre;
     }
-
+ 
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+ 
     public String getEstado() {
         return estado;
     }
-
+ 
     public void setEstado(String estado) {
         this.estado = estado;
     }
-
-
+ 
 }
-
