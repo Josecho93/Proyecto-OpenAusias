@@ -44,6 +44,7 @@ public class ConnectionClassHelper {
 
         } else {
             return "openausias2015";
+            //return "ausiasyield2014";
         }
     }
 
@@ -94,4 +95,7 @@ public class ConnectionClassHelper {
             return "jdbc:mysql://" + ConnectionClassHelper.getDatabaseHost() + ":" + ConnectionClassHelper.getDatabasePort() + "/" + ConnectionClassHelper.getDatabaseName();
         }
     }
+    
+    
+    
 }
