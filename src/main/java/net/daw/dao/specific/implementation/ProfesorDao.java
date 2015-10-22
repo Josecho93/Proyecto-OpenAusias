@@ -64,35 +64,62 @@ public class ProfesorDao extends TableDaoGenImpl<ProfesorBean> {
         return oProfesorBean;
 
     }
-    
-    
+
     @Override
     public ArrayList<ProfesorBean> getAll(ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder) throws Exception {
- 
+
+        strSqlSelectDataOrigin += SqlBuilder.buildSqlOrder(hmOrder);
+        strSqlSelectDataOrigin += SqlBuilder.buildSqlWhere(alFilter);
+
         ResultSet oResultset = oMysql.getAllSql(strSqlSelectDataOrigin);
         ArrayList<ProfesorBean> alProfesores = new ArrayList();
         while (oResultset.next()) {
             int id = oResultset.getInt("id");
- 
+
             ProfesorBean oProfesor = new ProfesorBean();
             oProfesor.setNombre(oMysql.getOne(strSqlSelectDataOrigin, "nombre", id));
             oProfesor.setEstado(oMysql.getOne(strSqlSelectDataOrigin, "estado", id));
             alProfesores.add(oProfesor);
- 
+
         }
- 
+
         return alProfesores;
- 
+
     }
-    
 
     @Override
     public int getCount(ArrayList<FilterBeanHelper> alFilter) throws Exception {
-
-        
+        strSqlSelectDataOrigin += SqlBuilder.buildSqlWhere(alFilter);
 
         return oMysql.getCount(strSqlSelectDataOrigin);
 
+    }
+
+    @Override
+    public ArrayList<ProfesorBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder) throws Exception {
+        strSqlSelectDataOrigin += SqlBuilder.buildSqlWhere(alFilter);
+
+        ResultSet oResultset = oMysql.getAllSql(strSqlSelectDataOrigin);
+        ArrayList<ProfesorBean> alPage = new ArrayList();
+        while (oResultset.next()) {
+            int id = oResultset.getInt("id");
+
+            ProfesorBean oProfesor = new ProfesorBean();
+            oProfesor.setNombre(oMysql.getOne(strSqlSelectDataOrigin, "nombre", id));
+            oProfesor.setEstado(oMysql.getOne(strSqlSelectDataOrigin, "estado", id));
+            alPage.add(oProfesor);
+
+        }
+
+        return alPage;
+
+    }
+
+    @Override
+    public int getPages(int intRegsPerPag, ArrayList<FilterBeanHelper> alFilter) throws Exception {
+        strSqlSelectDataOrigin += SqlBuilder.buildSqlWhere(alFilter);
+
+        return oMysql.getPages(strSqlSelectDataOrigin, intRegsPerPag);
     }
 
 }

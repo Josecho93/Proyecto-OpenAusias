@@ -29,10 +29,15 @@ package net.daw.service.specific.implementation;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import net.daw.bean.specific.implementation.ProfesorBean;
 import net.daw.connection.implementation.BoneConnectionPoolImpl;
 import net.daw.dao.specific.implementation.ProfesorDao;
@@ -108,6 +113,7 @@ public class ProfesorService extends TableServiceGenImpl {
 
         return "{\"status\":200,\"message\":" + oGson.toJson(oProfesorDao.getPage(rpp, page, alFilterBeanHelper, hmOrder)) + "}";
     }
+    
 
 //    @Override
 //    public String getpages() throws Exception {
