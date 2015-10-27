@@ -29,7 +29,6 @@ package net.daw.dao.specific.implementation;
 
 import java.sql.Connection;
 import net.daw.bean.specific.implementation.CocheBean;
-import net.daw.bean.specific.implementation.EstadoBean;
 import net.daw.dao.generic.implementation.TableDaoGenImpl;
 
 /**

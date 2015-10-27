@@ -1,4 +1,4 @@
-/*
+/* 
  * Copyright (c) 2015 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
  * 
  * openAUSIAS: The stunning micro-library that helps you to develop easily 
@@ -25,46 +25,42 @@
  * THE SOFTWARE.
  * 
  */
-package net.daw.service.specific.implementation;
 
-import javax.servlet.http.HttpServletRequest;
-import net.daw.bean.specific.implementation.UsuarioBean;
-import net.daw.dao.specific.implementation.CocheDao;
-import net.daw.helper.statics.ParameterCook;
-import net.daw.service.generic.implementation.TableServiceGenImpl;
+function fUsuarioRoutes() {
+    var icon = '<i class="fa fa-user fa-5x"></i>';
+    var fillDocumentoPageHeader = _.partial(html.getPageHeader, icon, 'Usuario', _);
+    var strClass = 'usuario';
+    var place = $('#broth_content');
+    
+    Path.map("#/" + strClass + "/new(/:url)").to(function () {
+        $('#broth_panel_heading').empty().append(fillDocumentoPageHeader('New'));
+        var strParam = parameter.getUrlObjectFromUrlString(this.params['url']);
+        ausiasFLOW.reset();
+        ausiasFLOW.initialize(newModule, place, strClass, 'new', strParam);
+        return false;
 
-/**
- *
- * @author a044531254b
- */
-public class CocheService extends TableServiceGenImpl {
+    });
 
-    public CocheService(HttpServletRequest request) {
-        super(request);
-    }
+    Path.map("#/" + strClass + "/view(/:url)").to(function () {
+        $('#broth_panel_heading').empty().append(fillDocumentoPageHeader('View'));
+        var strParam = parameter.getUrlObjectFromUrlString(this.params['url']);
+        ausiasFLOW.reset();
+        ausiasFLOW.initialize(viewModule, place, strClass, 'view', strParam);
+        return false;
 
-    @Override
-    public Boolean checkpermission(String strMethodName) throws Exception {
-        UsuarioBean oUserBean = (UsuarioBean) oRequest.getSession().getAttribute("userBean");
-        boolean breturn = false;
+    });
 
-        if (oUserBean != null) {
-            if (oUserBean.getId_tipousuario() == 1) {
-                breturn = true;
-            }
-            if (oUserBean.getId_tipousuario() == 2) {
+    Path.map("#/" + strClass + "/list(/:url)").to(function () {
+        $('#broth_panel_heading').empty().append(fillDocumentoPageHeader('List'));
+        var strParam = parameter.getUrlObjectFromUrlString(this.params['url']);
+        ausiasFLOW.reset();
+        ausiasFLOW.initialize(listModule, place, strClass, 'list', strParam);
+        return false;
 
-                switch (strMethodName) {
-                    case "get":
-                    case "getall":
-                    case "getpage":
-                    case "getpages":
-                    case "getcount":
-                        breturn = true;
-                        break;
-                }
-            }
-        }
-        return breturn;
-    }
+    });
 }
+
+
+
+
+
