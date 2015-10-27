@@ -41,7 +41,7 @@ var pListModule = function () {
     var urlWithoutPage;
     var urlWithoutRpp;
 }
-pListModule.prototype = Object.create(listModule.prototype);
+pListModule.prototype = new listModule();
 pListModule.prototype.refresh = function () {
     ausiasFLOW.renderPage();
     return false;
@@ -244,7 +244,7 @@ pListModule.prototype.bind = function () {
     thisObject = this;
     //visible fields
     $('#selectVisibleFields').empty()
-    form.populateSelectBox($('#selectVisibleFields'), ns.util.getIntegerArray(1, jsonData.message.meta.message.length))
+    form.populateSelectBox($('#selectVisibleFields'), array.getIntegerArray(1, jsonData.message.meta.message.length))
     $("#selectVisibleFields").val(paramsObject["vf"]);
     $('#selectVisibleFields').unbind('change');
     $("#selectVisibleFields").change(function () {
