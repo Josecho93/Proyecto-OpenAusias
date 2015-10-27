@@ -4,11 +4,12 @@
  * and open the template in the editor.
  */
 
-function fUsuarioRoutes() {
+function fTipoUsuarioRoutes() {
     var icon = '<i class="fa fa-file-text-o fa-5x"></i>';
-    var fillDocumentoPageHeader = _.partial(html.getPageHeader, icon, 'Usuario', _);
-    var strClass = 'usuario';
+    var fillDocumentoPageHeader = _.partial(html.getPageHeader, icon, 'TipoUsuario', _);
+    var strClass = 'tipousuario';
     var place = $('#broth_content');
+    
     Path.map("#/" + strClass + "/new(/:url)").to(function () {
         $('#broth_panel_heading').empty().append(fillDocumentoPageHeader('New'));
         var strParam = parameter.getUrlObjectFromUrlString(this.params['url']);
@@ -16,8 +17,7 @@ function fUsuarioRoutes() {
         ausiasFLOW.initialize(newModule, place, strClass, 'new', strParam);
         return false;
     });
-    
-    Path.map("#/" + strClass + "/list(/:url)").to(function () {
+     Path.map("#/" + strClass + "/list(/:url)").to(function () {
         $('#broth_panel_heading').empty().append(fillDocumentoPageHeader('List'));
         var strParam = parameter.getUrlObjectFromUrlString(this.params['url']);
         ausiasFLOW.reset();
