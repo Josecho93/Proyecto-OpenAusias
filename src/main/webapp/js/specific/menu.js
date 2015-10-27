@@ -155,6 +155,34 @@ appMenu = function () {
                                     )
 
                             )
+                    ) +
+                    dom.li('class="dropdown"',
+                    dom.a('href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"',
+                            dom.i('class="fa fa-icon-list-alt"', '') +
+                            'Usuario' +
+                            dom.span('class="caret"', '')
+                            ) +
+                    dom.ul('class="dropdown-menu" role="menu"',
+                            dom.li('',
+                                    dom.a('href="#/usuario/new"',
+                                            dom.i('class="fa fa-fw fa-user-plus"', '') +
+                                            'Añadir'
+                                            )
+                                    ) +
+                            dom.li('',
+                                    dom.a('href="#/usuario/list"',
+                                            dom.i('class="fa fa-fw fa-list"', '') +
+                                            'Listar'
+                                            )
+                                    ) +
+                            dom.li('',
+                                    dom.a('href="#/usuario/view"',
+                                            dom.i('class="fa fa-fw fa-search"', '') +
+                                            'Ver'
+                                            )
+                                    )
+
+                            )
                     )
             )
 }
