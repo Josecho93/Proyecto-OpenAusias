@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (c) 2015 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
  * 
  * openAUSIAS: The stunning micro-library that helps you to develop easily 
@@ -25,42 +25,21 @@
  * THE SOFTWARE.
  * 
  */
+package net.daw.dao.specific.implementation;
 
-function fUsuarioRoutes() {
-    var icon = '<i class="fa fa-user fa-5x"></i>';
-    var fillDocumentoPageHeader = _.partial(html.getPageHeader, icon, 'Usuario', _);
-    var strClass = 'usuario';
-    var place = $('#broth_content');
+import java.sql.Connection;
+import net.daw.bean.specific.implementation.CocheBean;
+import net.daw.dao.generic.implementation.TableDaoGenImpl;
+
+/**
+ *
+ * @author a044531254b
+ */
+public class CocheDao extends TableDaoGenImpl<CocheBean>{
     
-    Path.map("#/" + strClass + "/new(/:url)").to(function () {
-        $('#broth_panel_heading').empty().append(fillDocumentoPageHeader('New'));
-        var strParam = parameter.getUrlObjectFromUrlString(this.params['url']);
-        ausiasFLOW.reset();
-        ausiasFLOW.initialize(newModule, place, strClass, 'new', strParam);
-        return false;
+    public CocheDao(Connection pooledConnection) throws Exception {
+        super(pooledConnection);
+    }
 
-    });
-
-    Path.map("#/" + strClass + "/view(/:url)").to(function () {
-        $('#broth_panel_heading').empty().append(fillDocumentoPageHeader('View'));
-        var strParam = parameter.getUrlObjectFromUrlString(this.params['url']);
-        ausiasFLOW.reset();
-        ausiasFLOW.initialize(viewModule, place, strClass, 'view', strParam);
-        return false;
-
-    });
-
-    Path.map("#/" + strClass + "/list(/:url)").to(function () {
-        $('#broth_panel_heading').empty().append(fillDocumentoPageHeader('List'));
-        var strParam = parameter.getUrlObjectFromUrlString(this.params['url']);
-        ausiasFLOW.reset();
-        ausiasFLOW.initialize(listModule, place, strClass, 'list', strParam);
-        return false;
-
-    });
 }
-
-
-
-
-
+    
