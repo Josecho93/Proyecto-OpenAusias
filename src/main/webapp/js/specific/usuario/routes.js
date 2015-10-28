@@ -33,10 +33,10 @@ function fUsuarioRoutes() {
     var place = $('#broth_content');
     
     Path.map("#/" + strClass + "/new(/:url)").to(function () {
-        $('#broth_panel_heading').empty().append(fillDocumentoPageHeader('New'));
+        $('#broth_panel_heading').empty().append(fillDocumentoPageHeader('Nuevo usuario'));
         var strParam = parameter.getUrlObjectFromUrlString(this.params['url']);
         ausiasFLOW.reset();
-        ausiasFLOW.initialize(newModule, place, strClass, 'new', strParam);
+        ausiasFLOW.initialize(usuarioNew, place, strClass, 'new', strParam);
         return false;
 
     });
@@ -51,10 +51,19 @@ function fUsuarioRoutes() {
     });
 
     Path.map("#/" + strClass + "/list(/:url)").to(function () {
-        $('#broth_panel_heading').empty().append(fillDocumentoPageHeader('List'));
+        $('#broth_panel_heading').empty().append(fillDocumentoPageHeader('Lista de usuarios'));
         var strParam = parameter.getUrlObjectFromUrlString(this.params['url']);
         ausiasFLOW.reset();
         ausiasFLOW.initialize(listModule, place, strClass, 'list', strParam);
+        return false;
+
+    });
+    
+        Path.map("#/" + strClass + "/remove(/:url)").to(function () {
+        $('#broth_panel_heading').empty().append(fillDocumentoPageHeader('Borrar usuario'));
+        var strParam = parameter.getUrlObjectFromUrlString(this.params['url']);
+        ausiasFLOW.reset();
+        ausiasFLOW.initialize(removeModule, place, strClass, 'remove', strParam);
         return false;
 
     });

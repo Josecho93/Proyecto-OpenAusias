@@ -156,7 +156,7 @@ appMenu = function () {
 
                             )
                     ) +
-                    dom.li('class="dropdown"',
+            dom.li('class="dropdown"',
                     dom.a('href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"',
                             dom.i('class="fa fa-icon-list-alt"', '') +
                             'Usuario' +
@@ -177,6 +177,62 @@ appMenu = function () {
                                     ) +
                             dom.li('',
                                     dom.a('href="#/usuario/view"',
+                                            dom.i('class="fa fa-fw fa-search"', '') +
+                                            'Ver'
+                                            )
+                                    )
+
+                            )
+                    ) +
+            dom.li('class="dropdown"',
+                    dom.a('href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"',
+                            dom.i('class="fa fa-icon-list-alt"', '') +
+                            'Estado' +
+                            dom.span('class="caret"', '')
+                            ) +
+                    dom.ul('class="dropdown-menu" role="menu"',
+                            dom.li('',
+                                    dom.a('href="#/estado/new"',
+                                            dom.i('class="fa fa-fw fa-user-plus"', '') +
+                                            'Añadir'
+                                            )
+                                    ) +
+                            dom.li('',
+                                    dom.a('href="#/estado/list"',
+                                            dom.i('class="fa fa-fw fa-list"', '') +
+                                            'Listar'
+                                            )
+                                    ) +
+                            dom.li('',
+                                    dom.a('href="#/estado/view"',
+                                            dom.i('class="fa fa-fw fa-search"', '') +
+                                            'Ver'
+                                            )
+                                    )
+
+                            )
+                    ) +
+                    dom.li('class="dropdown"',
+                    dom.a('href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"',
+                            dom.i('class="fa fa-icon-list-alt"', '') +
+                            'Tipo de usuario' +
+                            dom.span('class="caret"', '')
+                            ) +
+                    dom.ul('class="dropdown-menu" role="menu"',
+                            dom.li('',
+                                    dom.a('href="#/tipousuario/new"',
+                                            dom.i('class="fa fa-fw fa-user-plus"', '') +
+                                            'Añadir'
+                                            )
+                                    ) +
+                            dom.li('',
+                                    dom.a('href="#/tipousuario/list"',
+                                            dom.i('class="fa fa-fw fa-list"', '') +
+                                            'Listar'
+                                            )
+                                    ) +
+                            dom.li('',
+                                    dom.a('href="#/tipousuario/view"',
                                             dom.i('class="fa fa-fw fa-search"', '') +
                                             'Ver'
                                             )

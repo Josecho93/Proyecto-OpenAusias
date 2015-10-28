@@ -39,6 +39,17 @@ import net.daw.helper.statics.MetaEnum;
 )
 public class TipousuarioBean extends BeanGenImpl implements BeanInterface {
 
+        @Expose
+    @MethodMetaInformation(
+            IsId = true,
+            UltraShortName = "Iden.",
+            ShortName = "Identif.",
+            Description = "Número Identificador",
+            Type = MetaEnum.FieldType.Integer,
+            DefaultValue = "0"
+    )
+    private Integer id;
+        
     @Expose
     @MethodMetaInformation(
             UltraShortName = "Desc.",
@@ -60,16 +71,7 @@ public class TipousuarioBean extends BeanGenImpl implements BeanInterface {
         this.id = id;
     }
 
-    @Expose
-    @MethodMetaInformation(
-            IsId = true,
-            UltraShortName = "Iden.",
-            ShortName = "Identif.",
-            Description = "Número Identificador",
-            Type = MetaEnum.FieldType.Integer,
-            DefaultValue = "0"
-    )
-    private Integer id;
+
 
     public String getDescripcion() {
         return descripcion;
