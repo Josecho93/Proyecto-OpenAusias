@@ -45,7 +45,7 @@ function fUsuarioRoutes() {
         $('#broth_panel_heading').empty().append(fillDocumentoPageHeader('View'));
         var strParam = parameter.getUrlObjectFromUrlString(this.params['url']);
         ausiasFLOW.reset();
-        ausiasFLOW.initialize(viewModule, place, strClass, 'view', strParam);
+        ausiasFLOW.initialize(specificView, place, strClass, 'view', strParam);
         return false;
 
     });
